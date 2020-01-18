@@ -1,30 +1,31 @@
 const express = require("express");
 const Posts = require("../models/Post")
+const auth = require('../privateRoutes')
 
 const route = express.Router();
 
-route.get('/', async (req, res) => {
+route.get('/', auth, async (req, res) => {
     try {
         const post = await Posts.find();
         res.json(post)
-
+       
     } catch (error) {
         res.json({ message: error })
     }
 
 })
 
-route.get('/:postId',
+route.get('/:postId', auth,
     async (req, res) => {
 
         try {
             const post = await Posts.findById(req.params.postId);
             res.json(post);
-            
+
         } catch (error) {
-            res.json({message: error})
+            res.json({ message: error })
         }
-        
+
     })
 
 route.post('/', async (req, res) => {
