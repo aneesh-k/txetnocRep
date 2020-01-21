@@ -16,6 +16,7 @@ require('dotenv/config');
 const app = express();
 mongoose.connect(process.env.CONN_STRING,{useNewUrlParser: true, useUnifiedTopology: true}, () => {
     console.log("Connected to db")
+    
 })
 // for cross origin issue
 app.use(cors());
@@ -38,4 +39,6 @@ app.get("/home", (req, res) => {
     res.send("hello world hello");
 })
 
-app.listen(3001);
+app.listen(3001, () => {
+    console.log("Started server at 3001")
+});

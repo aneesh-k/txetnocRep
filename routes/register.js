@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
     const user = new Users({
         name: req.body.name,
         email: req.body.email,
-        password: cryptPass
+        password: req.body.password
     })
 
     try {
